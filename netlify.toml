@@ -1,0 +1,24 @@
+[build]
+publish = "out"
+command = "npm run build && npm run export"
+
+[build.environment]
+BACKEND_URL = "https://checkout.vroptician.com"
+SHIPPING_URL = "https://shipping.vroptician.com"
+AUTHENTICATION_URL = "https://auth.vroptician.com"
+STATS_URL = "https://stats2.vroptician.com"
+
+[[redirects]]
+  from = "/invoice/*"
+  to = "/invoice/[id]/index.html"
+  status = 200 # becomes a rewrite
+
+[[redirects]]
+  from = "/orderslip/*"
+  to = "/orderslip/[id]/index.html"
+  status = 200 # becomes a rewrite
+
+[[redirects]]
+  from = "/print/*"
+  to = "/print/[from]/[to]/index.html"
+  status = 200 # becomes a rewrite
