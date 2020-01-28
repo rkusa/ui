@@ -51,7 +51,7 @@ export default function Dialog({
   );
 
   return (
-    <>
+    <Portal>
       <Backdrop onClick={handleClick} />
       <FocusLock autoFocus returnFocus>
         <RemoveScroll>
@@ -66,7 +66,7 @@ export default function Dialog({
           </DialogContainer>
         </RemoveScroll>
       </FocusLock>
-    </>
+    </Portal>
   );
 }
 
