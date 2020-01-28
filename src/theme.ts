@@ -16,6 +16,11 @@ const theme = {
     success: "#69A655",
     warning: "#A9A100",
     danger: "#9E383C"
+  },
+
+  zindex: {
+    backdrop: 1000,
+    dialog: 1001
   }
 };
 

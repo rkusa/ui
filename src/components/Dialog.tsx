@@ -57,7 +57,7 @@ const Backdrop = styled.div`
   right: 0px;
   bottom: 0px;
   left: 0px;
-  z-index: 999;
+  z-index: ${props => props.theme.zindex.backdrop};
 `;
 
 const DialogContainer = styled.div`
@@ -68,7 +68,7 @@ const DialogContainer = styled.div`
   transform: translate(-50%, -50%);
   background-color: ${props => props.theme.palette.white};
   margin: auto;
-  z-index: 1000;
+  z-index: ${props => props.theme.zindex.dialog};
   padding: 16px;
   box-sizing: border-box;
 
