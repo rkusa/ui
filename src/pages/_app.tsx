@@ -21,6 +21,8 @@ const GlobalStyle = createGlobalStyle`
     font-size: 14px;
     background-color: ${props => props.theme.palette.white};
     color: ${props => props.theme.palette.gray800};
+    margin: 0;
+    padding: 0;
   }
 
   a,

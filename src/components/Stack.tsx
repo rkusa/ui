@@ -69,11 +69,6 @@ const Stack = styled.div<VStackProps | HStackProps | ConditionalStackProps>`
   margin-bottom: ${({ mb }) => (mb ? "16px" : "0")};
 `;
 
-const InlineStack = styled(Stack.withComponent("span"))`
-  width: auto;
-  flex-grow: 0;
-`;
-
 function VStack({
   children,
   ...props
@@ -96,8 +91,7 @@ function HStack({
   );
 }
 
-export default Stack;
-export { InlineStack, VStack, HStack };
+export { VStack, HStack };
 
 function vAlignItems(props: VStackProps | HStackProps | ConditionalStackProps) {
   switch (props.halign) {
