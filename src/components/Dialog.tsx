@@ -44,7 +44,7 @@ export default function Dialog({
   );
 }
 
-interface DialogProps {
+export interface DialogProps {
   className?: string;
   children?: ReactNode;
   onDismiss?: () => void;
