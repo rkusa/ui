@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 interface StackProps {
   inline?: boolean;
+  wrap?: boolean;
   pd?: boolean;
-  multiLine?: boolean;
   mt?: boolean;
   mb?: boolean;
 }
@@ -63,8 +63,8 @@ const Stack = styled.div<VStackProps | HStackProps | ConditionalStackProps>`
     props.direction === "horizontal" ? hAlignItems(props) : vAlignItems(props)};
   width: 100%;
   flex-grow: ${({ inline }) => (inline ? 0 : 1)};
+  flex-wrap: ${({ wrap }) => (wrap ? "wrap" : "no-wrap")};
   padding: ${({ pd }) => (pd ? "32px 0" : "0")};
-  flex-wrap: ${({ multiLine }) => (multiLine ? "wrap" : "no-wrap")};
   margin-top: ${({ mt }) => (mt ? "16px" : "0")};
   margin-bottom: ${({ mb }) => (mb ? "16px" : "0")};
 `;
@@ -90,8 +90,6 @@ function HStack({
     </Stack>
   );
 }
-
-export { VStack, HStack };
 
 function vAlignItems(props: VStackProps | HStackProps | ConditionalStackProps) {
   switch (props.halign) {
@@ -164,3 +162,5 @@ function hJustifyContent(
       return "center";
   }
 }
+
+export { VStack, HStack };
