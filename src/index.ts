@@ -1,9 +1,9 @@
 // hooks
-
 export {
   default as useFormState,
-  useCheckboxState
+  useCheckboxState,
 } from "./hooks/useFormState";
+export { default as useStore } from "./hooks/useStore";
 
 // components
 
