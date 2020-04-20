@@ -11,8 +11,8 @@ export default function useFormState<S>(
   const [value, setValue] = useState(initialState);
 
   const onChange = useCallback(
-    e => {
-      const transform = opts?.transform ?? (v => v);
+    (e) => {
+      const transform = opts?.transform ?? ((v) => v);
       if (e && typeof e === "object" && e.target instanceof HTMLElement) {
         setValue(transform(e.target.value));
       } else {
@@ -33,7 +33,7 @@ export default function useFormState<S>(
 
 export function useCheckboxState(initialState: boolean | (() => boolean)) {
   const [value, setValue] = useState(initialState);
-  const onChange = useCallback(e => setValue(e.target.checked), []);
+  const onChange = useCallback((e) => setValue(e.target.checked), []);
   useEffect(() => {
     if (typeof initialState !== "function" && initialState !== value) {
       setValue(initialState);

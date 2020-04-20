@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 interface StackProps {
   inline?: boolean;
-  wrap?: boolean;
+  allowWrap?: boolean;
   pd?: boolean;
   mt?: boolean;
   mb?: boolean;
@@ -55,18 +55,18 @@ const Stack = styled.div<VStackProps | HStackProps | ConditionalStackProps>`
   display: flex;
   flex-direction: ${({ direction }) =>
     direction === "horizontal" ? "row" : "column"};
-  justify-content: ${props =>
+  justify-content: ${(props) =>
     props.direction === "horizontal"
       ? hJustifyContent(props)
       : vJustifyContent(props)};
-  align-items: ${props =>
+  align-items: ${(props) =>
     props.direction === "horizontal" ? hAlignItems(props) : vAlignItems(props)};
   width: 100%;
   flex-grow: ${({ inline }) => (inline ? 0 : 1)};
-  flex-wrap: ${({ wrap }) => (wrap ? "wrap" : "no-wrap")};
+  flex-wrap: ${({ allowWrap }) => (allowWrap ? "wrap" : "no-wrap")};
   padding: ${({ pd }) => (pd ? "32px 0" : "0")};
-  margin-top: ${({ mt }) => (mt ? "16px" : "0")};
-  margin-bottom: ${({ mb }) => (mb ? "16px" : "0")};
+  margin-top: ${({ mt }) => (mt ? "32px" : "0")};
+  margin-bottom: ${({ mb }) => (mb ? "32px" : "0")};
 `;
 
 function VStack({

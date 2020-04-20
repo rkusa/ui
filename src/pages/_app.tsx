@@ -19,8 +19,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-weight: 400;
     font-size: 14px;
-    background-color: ${props => props.theme.palette.white};
-    color: ${props => props.theme.palette.gray800};
+    background-color: ${(props) => props.theme.palette.white};
+    color: ${(props) => props.theme.palette.gray800};
     margin: 0;
     padding: 0;
   }

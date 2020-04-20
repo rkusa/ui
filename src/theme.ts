@@ -15,13 +15,13 @@ const theme = {
     primary: "#30558F",
     success: "#69A655",
     warning: "#A9A100",
-    danger: "#9E383C"
+    danger: "#9E383C",
   },
 
   zindex: {
     backdrop: 1000,
-    dialog: 1001
-  }
+    dialog: 1001,
+  },
 };
 
 export type Theme = typeof theme;
