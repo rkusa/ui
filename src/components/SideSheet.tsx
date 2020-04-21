@@ -64,9 +64,13 @@ const DialogStyled = styled(Dialog)<{ entered: boolean; width?: number }>`
   overflow-y: auto;
   overflow-x: hidden;
 
-  @media (max-width: 767px) {
+  @media (max-width: ${props => `${(props.width || 512)}px`}) {
     width: 100vw;
     left: 0;
+  }
+
+  @media (max-width: 575px) {
+    padding: 32px 16px;
   }
 `;
 
@@ -84,4 +88,8 @@ const Button = styled.button`
   background: none;
   border: none;
   color: ${(props) => props.theme.palette.gray400};
+
+  @media (max-width: 575px) {
+    right: -8px;
+  }
 `;
