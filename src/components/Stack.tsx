@@ -64,9 +64,9 @@ const Stack = styled.div<VStackProps | HStackProps | ConditionalStackProps>`
   width: 100%;
   flex-grow: ${({ inline }) => (inline ? 0 : 1)};
   flex-wrap: ${({ allowWrap }) => (allowWrap ? "wrap" : "no-wrap")};
-  padding: ${({ pd }) => (pd ? "32px 0" : "0")};
-  margin-top: ${({ mt }) => (mt ? "32px" : "0")};
-  margin-bottom: ${({ mb }) => (mb ? "32px" : "0")};
+  padding: ${({ pd, theme }) => (pd ? `${theme.spacing.default}px 0` : "0")};
+  margin-top: ${({ mt, theme }) => (mt ? `${theme.spacing.default}px` : "0")};
+  margin-bottom: ${({ mb, theme }) => (mb ? `${theme.spacing.default}px` : "0")};
 `;
 
 function VStack({

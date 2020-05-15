@@ -22,6 +22,10 @@ const theme = {
     backdrop: 1000,
     dialog: 1001,
   },
+
+  spacing: {
+    default: 32,
+  }
 };
 
 export type Theme = typeof theme;
