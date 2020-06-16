@@ -9,6 +9,8 @@ export default function Dialog({
   children,
   onDismiss,
   entered,
+  disableEscDismiss,
+  disableOutsideClickDismiss,
 }: DialogProps) {
   const handleClick = useCallback(() => {
     if (onDismiss) {
@@ -18,17 +20,17 @@ export default function Dialog({
 
   const handleKeyDown = useCallback(
     (e) => {
-      if (onDismiss && e.key === "Escape") {
+      if (!disableEscDismiss && onDismiss && e.key === "Escape") {
         onDismiss();
       }
     },
-    [onDismiss]
+    [disableEscDismiss, onDismiss]
   );
 
   return (
     <Portal>
       <Backdrop
-        onClick={handleClick}
+        onClick={!disableOutsideClickDismiss && handleClick || undefined}
         entered={entered !== undefined ? entered : true}
       />
       <FocusLock autoFocus returnFocus>
@@ -53,6 +55,8 @@ export interface DialogProps {
   children?: ReactNode;
   onDismiss?: () => void;
   entered?: boolean;
+  disableEscDismiss?: boolean;
+  disableOutsideClickDismiss?: boolean;
 }
 
 const fadeIn = keyframes`
