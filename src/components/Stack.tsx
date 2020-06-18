@@ -51,7 +51,12 @@ interface ConditionalStackProps extends StackProps {
   valign?: VStackVAlign | HStackVAlign;
 }
 
-const Stack = styled.div<VStackProps | HStackProps | ConditionalStackProps>`
+const STACK_PROP_FITLER = ["direction"];
+
+const Stack = styled.div.withConfig({
+  shouldForwardProp: (prop, defaultValidatorFn) =>
+    !(STACK_PROP_FITLER.includes(prop) && defaultValidatorFn(prop)),
+})<VStackProps | HStackProps | ConditionalStackProps>`
   display: flex;
   flex-direction: ${({ direction }) =>
     direction === "horizontal" ? "row" : "column"};
@@ -66,13 +71,18 @@ const Stack = styled.div<VStackProps | HStackProps | ConditionalStackProps>`
   flex-wrap: ${({ allowWrap }) => (allowWrap ? "wrap" : "no-wrap")};
   padding: ${({ pd, theme }) => (pd ? `${theme.spacing.default}px 0` : "0")};
   margin-top: ${({ mt, theme }) => (mt ? `${theme.spacing.default}px` : "0")};
-  margin-bottom: ${({ mb, theme }) => (mb ? `${theme.spacing.default}px` : "0")};
+  margin-bottom: ${({ mb, theme }) =>
+    mb ? `${theme.spacing.default}px` : "0"};
 `;
+
+type StackComponentProps = Omit<React.HTMLAttributes<HTMLElement>, "as"> & {
+  as?: React.ElementType<any>;
+};
 
 function VStack({
   children,
   ...props
-}: React.HTMLAttributes<HTMLElement> & VStackAlignmentProps) {
+}: VStackAlignmentProps & StackComponentProps) {
   return (
     <Stack direction="vertical" {...props}>
       {children}
@@ -83,7 +93,7 @@ function VStack({
 function HStack({
   children,
   ...props
-}: React.HTMLAttributes<HTMLElement> & HStackAlignmentProps) {
+}: HStackAlignmentProps & StackComponentProps) {
   return (
     <Stack direction="horizontal" {...props}>
       {children}

@@ -30,7 +30,7 @@ export default function Dialog({
   return (
     <Portal>
       <Backdrop
-        onClick={!disableOutsideClickDismiss && handleClick || undefined}
+        onClick={(!disableOutsideClickDismiss && handleClick) || undefined}
         entered={entered !== undefined ? entered : true}
       />
       <FocusLock autoFocus returnFocus>

@@ -25,7 +25,7 @@ const theme = {
 
   spacing: {
     default: 32,
-  }
+  },
 };
 
 export type Theme = typeof theme;

@@ -64,7 +64,7 @@ const DialogStyled = styled(Dialog)<{ entered: boolean; width?: number }>`
   overflow-y: auto;
   overflow-x: hidden;
 
-  @media (max-width: ${props => `${(props.width || 512)}px`}) {
+  @media (max-width: ${(props) => `${props.width || 512}px`}) {
     width: 100vw;
     left: 0;
   }
