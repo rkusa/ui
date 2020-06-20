@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useEffect, useRef } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import useMemoObject from "./useMemoObject";
 
 interface UseFormStateOpts<S> {
   transform?: (val: string) => S;
@@ -28,11 +29,7 @@ export default function useFormState<S extends string>(
     }
   }, [initialState]);
 
-  const result = useRef({ value, onChange });
-  result.current.value = value;
-  result.current.onChange = onChange;
-
-  return result.current;
+  return useMemoObject({ value, onChange });
 }
 
 export function useCheckboxState(initialState: boolean | (() => boolean)) {
@@ -44,9 +41,5 @@ export function useCheckboxState(initialState: boolean | (() => boolean)) {
     }
   }, [initialState]);
 
-  const result = useRef({ checked, onChange });
-  result.current.checked = checked;
-  result.current.onChange = onChange;
-
-  return result.current;
+  return useMemoObject({ checked, onChange });
 }

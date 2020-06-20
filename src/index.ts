@@ -4,6 +4,7 @@ export {
   useCheckboxState,
 } from "./hooks/useFormState";
 export { default as useStore, Store } from "./hooks/useStore";
+export { default as useDisclosure } from "./hooks/useDisclosure";
 
 // components
 export { default as Dialog } from "./components/Dialog";
