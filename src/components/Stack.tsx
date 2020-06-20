@@ -51,11 +51,21 @@ interface ConditionalStackProps extends StackProps {
   valign?: VStackVAlign | HStackVAlign;
 }
 
-const STACK_PROP_FITLER = ["direction"];
+const STACK_PROP_FITLER = [
+  "direction",
+  "halign",
+  "valign",
+  "inline",
+  "allowWrap",
+  "inline",
+  "pd",
+  "mt",
+  "mb",
+];
 
 const Stack = styled.div.withConfig({
   shouldForwardProp: (prop, defaultValidatorFn) =>
-    !(STACK_PROP_FITLER.includes(prop) && defaultValidatorFn(prop)),
+    !STACK_PROP_FITLER.includes(prop) && defaultValidatorFn(prop),
 })<VStackProps | HStackProps | ConditionalStackProps>`
   display: flex;
   flex-direction: ${({ direction }) =>
@@ -92,6 +102,7 @@ function VStack({
 
 function HStack({
   children,
+  inline,
   ...props
 }: HStackAlignmentProps & StackComponentProps) {
   return (
