@@ -8,7 +8,12 @@ interface UseFormStateOpts<S> {
 export default function useFormState<S extends string | number>(
   initialState: S | (() => S),
   opts?: UseFormStateOpts<S>
-) {
+): {
+  value: S;
+  onChange: React.ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >;
+} {
   const [value, setValue] = useState(initialState);
 
   const onChange = useCallback(
@@ -29,7 +34,7 @@ export default function useFormState<S extends string | number>(
     }
   }, [initialState]);
 
-  return useMemoObject({ value: String(value), onChange });
+  return useMemoObject({ value: value, onChange });
 }
 
 export function useCheckboxState(initialState: boolean | (() => boolean)) {

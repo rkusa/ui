@@ -71,7 +71,9 @@ describe("useFormState", () => {
 
   test("text input with enum type", () => {
     type Enum = "first" | "second" | "third";
-    renderHook(() => useFormState<Enum>("first")); // this is mostly a Typescript test
+    const { result } = renderHook(() => useFormState<Enum>("first")); // this is mostly a Typescript test
+    const test: Enum = result.current.value;
+    expect(test).toBe("first");
   });
 });
 
