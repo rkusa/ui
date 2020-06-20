@@ -1,16 +1,17 @@
 const theme = {
   palette: {
-    gray100: "#f0f0f0",
-    gray200: "#E0DEE1",
-    gray300: "#BCBBBD",
-    gray400: "#999999",
-    gray500: "#696869",
-    gray600: "#50534f",
-    gray700: "#3D3F3E",
-    gray800: "#292b29",
-    gray900: "#080808",
-    black: "#000000",
-    white: "#ffffff",
+    gray100: "hsl(213, 6%, 96%)",
+    gray200: "hsl(213, 6%, 88%)",
+    gray300: "hsl(213, 6%, 76%)",
+    gray400: "hsl(213, 6%, 65%)",
+    gray500: "hsl(213, 6%, 46%)",
+    gray600: "hsl(213, 6%, 29%)",
+    gray700: "hsl(213, 6%, 21%)",
+    gray800: "hsl(213, 6%, 14%)",
+    gray900: "hsl(213, 6%, 7%)",
+
+    white: "hsl(0, 0%, 98%)",
+    black: "hsl(0, 0%, 2%)",
 
     primary: "#30558F",
     success: "#69A655",

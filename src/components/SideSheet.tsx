@@ -57,7 +57,7 @@ const DialogStyled = styled(Dialog)<{ entered: boolean; width?: number }>`
   transition: transform 0.25s ease;
   transform: translateX(${(props) => (props.entered ? 0 : "100%")});
   box-shadow: rgba(0, 0, 0, 0.05) -1px 0px 2px 0px;
-  background-color: ${(props) => props.theme.palette.gray200};
+  background-color: ${(props) => props.theme.palette.gray100};
   margin: 0;
   left: auto;
   padding: 32px 64px;
