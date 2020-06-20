@@ -1,23 +1,23 @@
-import { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 
 interface UseFormStateOpts<S> {
-  transform?: (val: S) => S;
+  transform?: (val: string) => S;
 }
 
-export default function useFormState<S>(
+export default function useFormState<S extends string>(
   initialState: S | (() => S),
   opts?: UseFormStateOpts<S>
 ) {
   const [value, setValue] = useState(initialState);
 
   const onChange = useCallback(
-    (e) => {
-      const transform = opts?.transform ?? ((v) => v);
-      if (e && typeof e === "object" && e.target instanceof HTMLElement) {
-        setValue(transform(e.target.value));
-      } else {
-        setValue(transform(e));
-      }
+    (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >
+    ) => {
+      const transform = opts?.transform ?? ((v) => v as S);
+      setValue(transform(e.target.value));
     },
     [opts?.transform]
   );
@@ -28,16 +28,25 @@ export default function useFormState<S>(
     }
   }, [initialState]);
 
-  return { value, onChange };
+  const result = useRef({ value, onChange });
+  result.current.value = value;
+  result.current.onChange = onChange;
+
+  return result.current;
 }
 
 export function useCheckboxState(initialState: boolean | (() => boolean)) {
-  const [value, setValue] = useState(initialState);
-  const onChange = useCallback((e) => setValue(e.target.checked), []);
+  const [checked, setChecked] = useState(initialState);
+  const onChange = useCallback((e) => setChecked(e.target.checked), []);
   useEffect(() => {
-    if (typeof initialState !== "function" && initialState !== value) {
-      setValue(initialState);
+    if (typeof initialState !== "function" && initialState !== checked) {
+      setChecked(initialState);
     }
   }, [initialState]);
-  return { checked: value, onChange };
+
+  const result = useRef({ checked, onChange });
+  result.current.checked = checked;
+  result.current.onChange = onChange;
+
+  return result.current;
 }
