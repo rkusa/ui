@@ -5,7 +5,7 @@ interface UseFormStateOpts<S> {
   transform?: (val: string) => S;
 }
 
-export default function useFormState<S extends string>(
+export default function useFormState<S extends string | number>(
   initialState: S | (() => S),
   opts?: UseFormStateOpts<S>
 ) {
@@ -29,7 +29,7 @@ export default function useFormState<S extends string>(
     }
   }, [initialState]);
 
-  return useMemoObject({ value, onChange });
+  return useMemoObject({ value: String(value), onChange });
 }
 
 export function useCheckboxState(initialState: boolean | (() => boolean)) {

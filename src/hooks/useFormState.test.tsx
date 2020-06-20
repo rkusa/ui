@@ -1,6 +1,6 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 import useFormState, { useCheckboxState } from "./useFormState";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 describe("useFormState", () => {
   test("values updates after change", () => {
@@ -39,6 +39,39 @@ describe("useFormState", () => {
     const { getByPlaceholderText } = render(<Test />);
     const input = getByPlaceholderText("test");
     expect(input.getAttributeNames()).toEqual(["type", "placeholder", "value"]);
+  });
+
+  test("number input", () => {
+    function Test() {
+      const field = useFormState(10);
+      return <input type="number" placeholder="test" {...field} />;
+    }
+
+    const { getByPlaceholderText } = render(<Test />);
+    const input = getByPlaceholderText("test") as HTMLInputElement;
+    expect(input.valueAsNumber).toBe(10);
+    fireEvent.change(input, { target: { valueAsNumber: 42 } });
+    expect(input.valueAsNumber).toBe(42);
+  });
+
+  // TODO
+  // test('date input', () => {
+  //   function Test() {
+  //     const field = useFormState(new Date('2020-06-20'));
+  //     console.log(field)
+  //     return <input type="text" placeholder="test" {...field} />;
+  //   }
+
+  //   const { getByPlaceholderText } = render(<Test />);
+  //   const input = getByPlaceholderText("test") as HTMLInputElement;
+  //   expect(input.valueAsDate).toEqual(new Date('2020-06-20'))
+  //   fireEvent.change(input, {target:{valueAsDate: new Date('2020-06-19')}})
+  //   expect(input.valueAsDate).toEqual(new Date('2020-06-19'))
+  // })
+
+  test("text input with enum type", () => {
+    type Enum = "first" | "second" | "third";
+    renderHook(() => useFormState<Enum>("first")); // this is mostly a Typescript test
   });
 });
 
