@@ -102,7 +102,6 @@ function VStack({
 
 function HStack({
   children,
-  inline,
   ...props
 }: HStackAlignmentProps & StackComponentProps) {
   return (
