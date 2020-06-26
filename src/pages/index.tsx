@@ -5,6 +5,8 @@ import SideSheet from "../components/SideSheet";
 import { Theme } from "../theme";
 import styled from "styled-components";
 import { HStack } from "../components/Stack";
+import Button from "../components/Button";
+import { Save } from "react-feather";
 
 export default function Home() {
   return (
@@ -12,6 +14,7 @@ export default function Home() {
       <ColorsSection />
       <DialogSection />
       <SideSheetSection />
+      <ButtonSection />
     </Container>
   );
 }
@@ -23,9 +26,7 @@ function DialogSection() {
     <>
       <h2>Dialog</h2>
 
-      <button type="button" onClick={() => setIsOpen(true)}>
-        Open Dialog
-      </button>
+      <Button onClick={() => setIsOpen(true)}>Open Dialog</Button>
       {isOpen && (
         <Dialog onDismiss={() => setIsOpen(false)}>
           Dialog content ...
@@ -43,13 +44,11 @@ function SideSheetSection() {
     <>
       <h2>Side Sheet</h2>
 
-      <button type="button" onClick={() => setIsOpen(true)}>
-        Open Side Sheet
-      </button>
+      <Button onClick={() => setIsOpen(true)}>Open Side Sheet</Button>
       {isOpen && (
         <SideSheet title="Side Sheet" onDismiss={() => setIsOpen(false)}>
           Side Sheet content ...
-          <button>something to focus</button>
+          <Button>something to focus</Button>
         </SideSheet>
       )}
     </>
@@ -96,6 +95,83 @@ function ColorsSection() {
       </HStack>
       <HStack as={DarkContainer} halign="left">
         {colors}
+      </HStack>
+    </>
+  );
+}
+
+function ButtonSection() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  return (
+    <>
+      <h2>Button</h2>
+
+      <HStack halign="left" valign="middle" mb>
+        <Button>save</Button>
+        <Button intent="primary">save</Button>
+        <Button intent="danger">save</Button>
+        <Button intent="success">save</Button>
+      </HStack>
+      <HStack halign="left" valign="middle" mb>
+        <Button disabled>save</Button>
+        <Button disabled intent="primary">
+          save
+        </Button>
+        <Button disabled intent="danger">
+          save
+        </Button>
+        <Button disabled intent="success">
+          save
+        </Button>
+      </HStack>
+      <HStack halign="left" valign="middle" mb>
+        <Button isLoading>save</Button>
+        <Button isLoading intent="primary">
+          save
+        </Button>
+        <Button isLoading intent="danger">
+          save
+        </Button>
+        <Button isLoading intent="success">
+          save
+        </Button>
+      </HStack>
+      <HStack halign="left" valign="middle" mb>
+        <Button icon={<Save />}>save</Button>
+        <Button icon={<Save />} intent="primary">
+          save
+        </Button>
+        <Button icon={<Save />} intent="danger">
+          save
+        </Button>
+        <Button icon={<Save />} intent="success">
+          save
+        </Button>
+      </HStack>
+      <HStack halign="left" valign="middle" mb>
+        <Button icon={<Save />} />
+        <Button icon={<Save />} intent="primary" />
+        <Button icon={<Save />} intent="danger" />
+        <Button icon={<Save />} intent="success" />
+      </HStack>
+      <HStack halign="left" valign="middle" mb>
+        <Button icon={<Save />} isLoading />
+        <Button icon={<Save />} isLoading intent="primary" />
+        <Button icon={<Save />} isLoading intent="danger" />
+        <Button icon={<Save />} isLoading intent="success" />
+      </HStack>
+      <HStack halign="left" valign="middle" mb>
+        <Button isLoading={isLoading} onClick={() => setIsLoading((l) => !l)}>
+          loading toggle
+        </Button>
+        <Button
+          icon={<Save />}
+          isLoading={isLoading}
+          onClick={() => setIsLoading((l) => !l)}
+        >
+          loading toggle
+        </Button>
       </HStack>
     </>
   );

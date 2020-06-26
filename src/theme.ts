@@ -25,7 +25,7 @@ const theme = {
   },
 
   spacing: {
-    default: 32,
+    default: 16,
   },
 };
 
