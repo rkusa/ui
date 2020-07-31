@@ -86,7 +86,7 @@ export function ButtonLink({
   );
 }
 
-export const ButtonStyled = styled.button<{
+const ButtonStyled = styled.button<{
   hasIcon?: boolean;
   hasText?: boolean;
   isLoading?: boolean;
