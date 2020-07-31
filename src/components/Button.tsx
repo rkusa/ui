@@ -131,6 +131,7 @@ const ButtonStyled = styled.button<{
     background-image: linear-gradient(#0000000a, #00000014);
   }
 
+  & + &,
   & + button {
     margin-left: 4px;
   }
