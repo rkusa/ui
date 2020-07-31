@@ -6,7 +6,7 @@ import { Theme } from "../theme";
 
 type ButtonIntent = "primary" | "success" | "danger";
 
-interface ButtonProps {
+export interface ButtonProps {
   align?:
     | "left"
     | "right"
@@ -56,7 +56,8 @@ export default function Button({
   );
 }
 
-interface ButtonLinkProps extends Omit<ButtonProps, "type" | "disabled"> {
+export interface ButtonLinkProps
+  extends Omit<ButtonProps, "type" | "disabled"> {
   href?: string;
   target?: string;
 }
