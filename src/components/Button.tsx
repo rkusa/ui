@@ -20,6 +20,7 @@ export interface ButtonProps {
   disabled?: boolean;
   icon?: React.ReactNode;
   intent?: ButtonIntent;
+  naked?: boolean;
   autoFocus?: boolean;
 }
 
@@ -93,6 +94,7 @@ const ButtonStyled = styled.button<{
   hasText?: boolean;
   isLoading?: boolean;
   intent?: ButtonIntent;
+  naked?: boolean;
   disabled?: boolean;
 }>`
   display: inline-flex;
@@ -106,7 +108,6 @@ const ButtonStyled = styled.button<{
   text-decoration: none;
   padding: ${padding};
   background-color: ${backgroundColor};
-  background-image: linear-gradient(#00000000, #0000000a);
   border: 1px solid ${borderColor};
   box-sizing: border-box;
   height: 34px;
@@ -119,18 +120,24 @@ const ButtonStyled = styled.button<{
     margin: 0;
   }
 
-  &:disabled {
-    background-image: linear-gradient(#ffffff3c, #ffffff50);
-  }
-
   &:focus {
     outline: 0;
     box-shadow: 0 0 0 2px ${(props) => props.theme.palette.primary} inset;
   }
 
-  &:hover:not(:disabled) {
-    background-image: linear-gradient(#0000000a, #00000014);
-  }
+  ${(props) =>
+    !props.naked &&
+    `
+      background-image: linear-gradient(#00000000, #0000000a);
+
+      &:disabled {
+        background-image: linear-gradient(#ffffff3c, #ffffff50);
+      }
+
+      &:hover:not(:disabled) {
+        background-image: linear-gradient(#0000000a, #00000014);
+      }
+  `}
 
   & + &,
   & + button {
@@ -152,11 +159,17 @@ function padding(props: {
 
 function backgroundColor({
   intent,
+  naked,
   theme,
 }: {
   intent?: ButtonIntent;
+  naked?: boolean;
   theme: Theme;
 }) {
+  if (naked) {
+    return "transparent";
+  }
+
   switch (intent) {
     case "primary":
       return theme.palette.primary;
@@ -171,11 +184,17 @@ function backgroundColor({
 
 function borderColor({
   intent,
+  naked,
   theme,
 }: {
   intent?: ButtonIntent;
+  naked?: boolean;
   theme: Theme;
 }) {
+  if (naked) {
+    return "transparent";
+  }
+
   switch (intent) {
     case "primary":
       return theme.palette.primary;
@@ -188,16 +207,37 @@ function borderColor({
   }
 }
 
-function color({ intent, theme }: { intent?: ButtonIntent; theme: Theme }) {
-  switch (intent) {
-    case "primary":
-      return theme.palette.white;
-    case "success":
-      return theme.palette.white;
-    case "danger":
-      return theme.palette.white;
-    default:
-      return theme.palette.gray900;
+function color({
+  intent,
+  naked,
+  theme,
+}: {
+  intent?: ButtonIntent;
+  naked?: boolean;
+  theme: Theme;
+}) {
+  if (naked) {
+    switch (intent) {
+      case "primary":
+        return theme.palette.primary;
+      case "success":
+        return theme.palette.success;
+      case "danger":
+        return theme.palette.danger;
+      default:
+        return theme.palette.gray900;
+    }
+  } else {
+    switch (intent) {
+      case "primary":
+        return theme.palette.white;
+      case "success":
+        return theme.palette.white;
+      case "danger":
+        return theme.palette.white;
+      default:
+        return theme.palette.gray900;
+    }
   }
 }
 

@@ -112,7 +112,19 @@ function ButtonSection() {
         <Button intent="primary">save</Button>
         <Button intent="danger">save</Button>
         <Button intent="success">save</Button>
+
+        <Button naked>save</Button>
+        <Button naked intent="primary">
+          save
+        </Button>
+        <Button naked intent="danger">
+          save
+        </Button>
+        <Button naked intent="success">
+          save
+        </Button>
       </HStack>
+
       <HStack halign="left" valign="middle" mb>
         <Button disabled>save</Button>
         <Button disabled intent="primary">
@@ -124,7 +136,21 @@ function ButtonSection() {
         <Button disabled intent="success">
           save
         </Button>
+
+        <Button disabled naked>
+          save
+        </Button>
+        <Button disabled naked intent="primary">
+          save
+        </Button>
+        <Button disabled naked intent="danger">
+          save
+        </Button>
+        <Button disabled naked intent="success">
+          save
+        </Button>
       </HStack>
+
       <HStack halign="left" valign="middle" mb>
         <Button isLoading>save</Button>
         <Button isLoading intent="primary">
@@ -136,7 +162,21 @@ function ButtonSection() {
         <Button isLoading intent="success">
           save
         </Button>
+
+        <Button isLoading naked>
+          save
+        </Button>
+        <Button isLoading naked intent="primary">
+          save
+        </Button>
+        <Button isLoading naked intent="danger">
+          save
+        </Button>
+        <Button isLoading naked intent="success">
+          save
+        </Button>
       </HStack>
+
       <HStack halign="left" valign="middle" mb>
         <Button icon={<Save />}>save</Button>
         <Button icon={<Save />} intent="primary">
@@ -148,19 +188,45 @@ function ButtonSection() {
         <Button icon={<Save />} intent="success">
           save
         </Button>
+
+        <Button icon={<Save />} naked>
+          save
+        </Button>
+        <Button icon={<Save />} naked intent="primary">
+          save
+        </Button>
+        <Button icon={<Save />} naked intent="danger">
+          save
+        </Button>
+        <Button icon={<Save />} naked intent="success">
+          save
+        </Button>
       </HStack>
+
       <HStack halign="left" valign="middle" mb>
         <Button icon={<Save />} />
         <Button icon={<Save />} intent="primary" />
         <Button icon={<Save />} intent="danger" />
         <Button icon={<Save />} intent="success" />
+
+        <Button icon={<Save />} naked />
+        <Button icon={<Save />} naked intent="primary" />
+        <Button icon={<Save />} naked intent="danger" />
+        <Button icon={<Save />} naked intent="success" />
       </HStack>
+
       <HStack halign="left" valign="middle" mb>
         <Button icon={<Save />} isLoading />
         <Button icon={<Save />} isLoading intent="primary" />
         <Button icon={<Save />} isLoading intent="danger" />
         <Button icon={<Save />} isLoading intent="success" />
+
+        <Button icon={<Save />} isLoading naked />
+        <Button icon={<Save />} isLoading naked intent="primary" />
+        <Button icon={<Save />} isLoading naked intent="danger" />
+        <Button icon={<Save />} isLoading naked intent="success" />
       </HStack>
+
       <HStack halign="left" valign="middle" mb>
         <Button isLoading={isLoading} onClick={() => setIsLoading((l) => !l)}>
           loading toggle
