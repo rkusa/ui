@@ -1,6 +1,6 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 import useFormState, { useCheckboxState } from "./useFormState";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, createEvent } from "@testing-library/react";
 
 describe("useFormState", () => {
   test("values updates after change", () => {
@@ -52,6 +52,32 @@ describe("useFormState", () => {
     expect(input.valueAsNumber).toBe(10);
     fireEvent.change(input, { target: { valueAsNumber: 42 } });
     expect(input.valueAsNumber).toBe(42);
+  });
+
+  test("number input data type", () => {
+    const input = document.createElement("input");
+    input.type = "number";
+    input.valueAsNumber = 42;
+
+    const { result } = renderHook(() => useFormState<number>(10)); // this is mostly a Typescript test
+    const event = createEvent.change(input);
+    act(() =>
+      result.current.onChange({
+        ...event,
+        currentTarget: input as EventTarget & HTMLInputElement,
+        target: input as EventTarget & HTMLInputElement,
+        nativeEvent: event,
+        isDefaultPrevented() {
+          return false;
+        },
+        isPropagationStopped() {
+          return false;
+        },
+        persist() {},
+      })
+    );
+    expect(typeof result.current.value).toBe("number");
+    expect(result.current.value).toEqual(42);
   });
 
   // TODO

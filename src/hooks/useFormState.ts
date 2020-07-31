@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import useMemoObject from "./useMemoObject";
 
 interface UseFormStateOpts<S> {
-  transform?: (val: string) => S;
+  transform?: (val: string | number) => S;
 }
 
 export default function useFormState<S extends string | number>(
@@ -23,7 +23,13 @@ export default function useFormState<S extends string | number>(
       >
     ) => {
       const transform = opts?.transform ?? ((v) => v as S);
-      setValue(transform(e.target.value));
+      setValue(
+        transform(
+          e.target instanceof HTMLInputElement && e.target.type === "number"
+            ? e.target.valueAsNumber
+            : e.target.value
+        )
+      );
     },
     [opts?.transform]
   );
