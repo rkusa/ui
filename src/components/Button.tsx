@@ -23,14 +23,13 @@ export interface ButtonProps {
   autoFocus?: boolean;
 }
 
-export default function Button({
-  isLoading,
-  disabled,
-  children,
-  icon,
-  type,
-  ...props
-}: ButtonProps & React.HTMLAttributes<HTMLButtonElement>) {
+const Button = React.forwardRef<
+  HTMLButtonElement,
+  ButtonProps & React.HTMLAttributes<HTMLButtonElement>
+>(function Button(
+  { isLoading, disabled, children, icon, type, ...props },
+  ref
+) {
   const showLoading = useDelayedLoading(isLoading);
 
   const currentIcon = showLoading ? (
@@ -41,6 +40,7 @@ export default function Button({
 
   return (
     <ButtonStyled
+      ref={ref}
       type={type || "button"}
       hasIcon={!!currentIcon}
       hasText={!!children}
@@ -54,7 +54,9 @@ export default function Button({
       {children}
     </ButtonStyled>
   );
-}
+});
+
+export default Button;
 
 export interface ButtonLinkProps
   extends Omit<ButtonProps, "type" | "disabled"> {
@@ -62,18 +64,17 @@ export interface ButtonLinkProps
   target?: string;
 }
 
-export function ButtonLink({
-  isLoading,
-  children,
-  icon,
-  ...props
-}: ButtonLinkProps & React.HTMLAttributes<HTMLAnchorElement>) {
+export const ButtonLink = React.forwardRef<
+  HTMLAnchorElement,
+  ButtonLinkProps & React.HTMLAttributes<HTMLAnchorElement>
+>(function ButtonLink({ isLoading, children, icon, ...props }, ref) {
   const showLoading = useDelayedLoading(isLoading);
 
   const currentIcon = showLoading ? <SpinnerStyled /> : icon;
 
   return (
     <ButtonLinkStyled
+      ref={ref}
       hasIcon={!!currentIcon}
       hasText={!!children}
       isLoading={isLoading}
@@ -85,7 +86,7 @@ export function ButtonLink({
       {children}
     </ButtonLinkStyled>
   );
-}
+});
 
 const ButtonStyled = styled.button<{
   hasIcon?: boolean;
