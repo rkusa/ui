@@ -76,7 +76,7 @@ const Stack = styled.div.withConfig({
       : vJustifyContent(props)};
   align-items: ${(props) =>
     props.direction === "horizontal" ? hAlignItems(props) : vAlignItems(props)};
-  width: 100%;
+  width: ${({ inline }) => (inline ? "auto" : "100%")};
   flex-grow: ${({ inline }) => (inline ? 0 : 1)};
   flex-wrap: ${({ allowWrap }) => (allowWrap ? "wrap" : "no-wrap")};
   padding: ${({ pd, theme }) => (pd ? `${theme.spacing.default}px 0` : "0")};
