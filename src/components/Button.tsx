@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import Spinner from "./Spinner";
 import { useDelayedLoading } from "../hooks/useDelayedLoading";
@@ -22,16 +22,36 @@ export interface ButtonProps {
   intent?: ButtonIntent;
   naked?: boolean;
   autoFocus?: boolean;
+  onAction?(): Promise<void>;
 }
 
 const Button = React.forwardRef<
   HTMLButtonElement,
   ButtonProps & React.HTMLAttributes<HTMLButtonElement>
 >(function Button(
-  { isLoading, disabled, children, icon, type, ...props },
+  { isLoading, disabled, children, icon, type, onAction, onClick, ...props },
   ref
 ) {
+  const [isExecuting, setExecuting] = useState(false);
   const showLoading = useDelayedLoading(isLoading);
+
+  const handleClick = useCallback(
+    async (e) => {
+      if (onAction) {
+        setExecuting(true);
+        try {
+          onAction();
+        } catch (err) {
+          throw err;
+        } finally {
+          setExecuting(false);
+        }
+      } else if (onClick) {
+        onClick(e);
+      }
+    },
+    [onClick, onAction]
+  );
 
   const currentIcon = showLoading ? (
     <SpinnerStyled intent={props.intent} />
@@ -45,8 +65,9 @@ const Button = React.forwardRef<
       type={type || "button"}
       hasIcon={!!currentIcon}
       hasText={!!children}
-      isLoading={isLoading}
-      disabled={isLoading || disabled}
+      isLoading={isExecuting || isLoading}
+      disabled={isExecuting || isLoading || disabled}
+      onClick={handleClick}
       {...props}
     >
       {currentIcon && (
@@ -60,7 +81,7 @@ const Button = React.forwardRef<
 export default Button;
 
 export interface ButtonLinkProps
-  extends Omit<ButtonProps, "type" | "disabled"> {
+  extends Omit<ButtonProps, "type" | "disabled" | "onAction"> {
   href?: string;
   target?: string;
 }
