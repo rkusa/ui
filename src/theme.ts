@@ -1,4 +1,4 @@
-const theme = {
+const defaultTheme = {
   palette: {
     gray100: "hsl(213, 6%, 96%)",
     gray200: "hsl(213, 6%, 88%)",
@@ -29,10 +29,12 @@ const theme = {
   },
 };
 
-export type Theme = typeof theme;
+export type Theme = typeof defaultTheme;
 
-declare module "styled-components" {
-  export interface DefaultTheme extends Theme {}
+declare module "@emotion/react" {
+  type DerivedTheme = typeof defaultTheme;
+
+  export interface Theme extends DerivedTheme {}
 }
 
-export { theme };
+export { defaultTheme };

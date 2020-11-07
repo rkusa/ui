@@ -1,7 +1,8 @@
+import { keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
 import React, { ReactNode, useCallback } from "react";
 import FocusLock from "react-focus-lock";
 import { RemoveScroll } from "react-remove-scroll";
-import styled, { keyframes } from "styled-components";
 import Portal from "./Portal";
 
 export default function Dialog({

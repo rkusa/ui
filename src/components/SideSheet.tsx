@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Dialog from "./Dialog";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { X } from "react-feather";
 
 interface Props {

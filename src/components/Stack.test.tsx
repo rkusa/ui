@@ -1,13 +1,13 @@
 import { render } from "@testing-library/react";
 import { HStack, VStack } from "./Stack";
-import { theme } from "../theme";
-import { ThemeProvider } from "styled-components";
+import { defaultTheme } from "../theme";
+import { ThemeProvider } from "@emotion/react";
 
 describe("HStack", () => {
   test("no extra attrs", () => {
     const spy = jest.spyOn(global.console, "error");
     const { getByTestId } = render(
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={defaultTheme}>
         <HStack
           data-testid="stack"
           halign="center"
@@ -30,7 +30,7 @@ describe("VStack", () => {
   test("no extra attrs", () => {
     const spy = jest.spyOn(global.console, "error");
     const { getByTestId } = render(
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={defaultTheme}>
         <VStack
           data-testid="stack"
           halign="center"

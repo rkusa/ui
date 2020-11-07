@@ -3,7 +3,7 @@ import Container from "../components/Container";
 import Dialog from "../components/Dialog";
 import SideSheet from "../components/SideSheet";
 import { Theme } from "../theme";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { HStack } from "../components/Stack";
 import Button from "../components/Button";
 import { Save } from "react-feather";

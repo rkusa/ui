@@ -1,5 +1,6 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
+import isPropValid from "@emotion/is-prop-valid";
 
 interface StackProps {
   inline?: boolean;
@@ -51,21 +52,8 @@ interface ConditionalStackProps extends StackProps {
   valign?: VStackVAlign | HStackVAlign;
 }
 
-const STACK_PROP_FITLER = [
-  "direction",
-  "halign",
-  "valign",
-  "inline",
-  "allowWrap",
-  "inline",
-  "pd",
-  "mt",
-  "mb",
-];
-
-const Stack = styled.div.withConfig({
-  shouldForwardProp: (prop, defaultValidatorFn) =>
-    !STACK_PROP_FITLER.includes(prop) && defaultValidatorFn(prop),
+const Stack = styled("div", {
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== "direction",
 })<VStackProps | HStackProps | ConditionalStackProps>`
   display: flex;
   flex-direction: ${({ direction }) =>

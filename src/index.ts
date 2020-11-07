@@ -15,5 +15,5 @@ export { default as Spinner } from "./components/Spinner";
 export { VStack, HStack } from "./components/Stack";
 
 // other
-export { theme as defaultTheme } from "./theme";
+export { defaultTheme } from "./theme";
 export type { Theme } from "./theme";

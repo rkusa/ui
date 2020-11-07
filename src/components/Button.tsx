@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import Spinner from "./Spinner";
 import { useDelayedLoading } from "../hooks/useDelayedLoading";
 import { Theme } from "../theme";

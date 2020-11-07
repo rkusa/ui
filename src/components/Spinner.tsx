@@ -1,7 +1,8 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "@emotion/styled";
 import { Theme } from "../theme";
 import { lighten, darken } from "polished";
+import { keyframes } from "@emotion/react";
 
 type SpinnerIntent = "primary" | "success" | "danger";
 

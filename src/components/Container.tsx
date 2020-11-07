@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 const Container = styled.div<{ width?: number }>`
   width: ${(props) => `${props.width || 1200}px`};
