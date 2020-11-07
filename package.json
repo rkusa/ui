@@ -1,6 +1,6 @@
 {
   "name": "@rkusa/ui",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -9,15 +9,19 @@
     "url": "git+https://github.com/rkusa/ui.git"
   },
   "author": "Markus Ast <m@rkusa.st>",
+  "main": "./dist/index.js",
   "module": "./src/index.ts",
-  "main": "./src/index.ts",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
-    "build": "next build",
-    "export": "next export",
+    "next:build": "next build",
+    "next:export": "next export",
     "start": "next dev",
     "fmt": "prettier --write './**/*.{js,ts,tsx,json}'",
-    "type-check": "tsc",
-    "test": "jest"
+    "type-check": "tsc --noEmit",
+    "test": "jest",
+    "clean": "shx rm -rf dist/*",
+    "build": "tsc",
+    "prepack": "npm run clean && npm run build"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.0.0-rc.0",
@@ -45,7 +49,12 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-test-renderer": "^17.0.1",
+    "shx": "^0.3.3",
     "typescript": "^4.0.2"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "files": [
+    "dist/",
+    "src/"
+  ]
 }

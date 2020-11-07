@@ -3,5 +3,6 @@
 !.prettierignore
 !.babelrc
 package-lock.json
+/dist
 /node_modules
 /out
