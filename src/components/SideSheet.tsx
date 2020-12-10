@@ -51,8 +51,9 @@ export default function SideSheet({
 
 const DialogStyled = styled(Dialog)<{ entered: boolean; width?: number }>`
   width: ${(props) => `${props.width || 512}px`};
-  height: 100vh;
+  height: 100%;
   top: 0;
+  bottom: 0;
   right: 0;
   transition: transform 0.25s ease;
   transform: translateX(${(props) => (props.entered ? 0 : "100%")});
