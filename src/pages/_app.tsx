@@ -1,3 +1,4 @@
+import React from "react";
 import { css, Global, ThemeProvider, useTheme } from "@emotion/react";
 import { default as BaseApp } from "next/app";
 import { defaultTheme } from "../theme";

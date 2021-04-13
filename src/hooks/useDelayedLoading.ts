@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useMountedSate from "./usMountedState";
+import useMountedSate from "./useMountedState";
 
 export function useDelayedLoading(isLoading?: boolean) {
   const [showLoading, setShowLoading] = useMountedSate(false);

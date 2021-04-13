@@ -9,9 +9,12 @@
     "url": "git+https://github.com/rkusa/ui.git"
   },
   "author": "Markus Ast <m@rkusa.st>",
-  "main": "dist/index.js",
+  "source": "src/index.ts",
+  "main": "dist/ui.js",
+  "exports": "./dist/ui.modern.js",
+  "module": "dist/ui.module.js",
+  "esmodule": "dist/ui.modern.js",
   "typings": "dist/index.d.ts",
-  "module": "dist/ui.esm.js",
   "files": [
     "dist",
     "src"
@@ -22,11 +25,12 @@
     "start": "next dev",
     "fmt": "prettier --write './**/*.{js,ts,tsx,json}'",
     "type-check": "tsc --noEmit",
-    "test": "tsdx test",
-    "build": "tsdx build",
-    "test:watch": "tsdx test --watch ./test",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build"
+    "test": "jest",
+    "build": "microbundle --format modern,es,cjs",
+    "prepare": "npm run build"
+  },
+  "resolutions": {
+    "**/prettier": "^2.2.1"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.0.0",
@@ -42,26 +46,29 @@
     "react-dom": "^17.0.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
     "@testing-library/react": "^11.0.4",
     "@testing-library/react-hooks": "^3.4.1",
+    "@tsconfig/recommended": "^1.0.1",
     "@types/jest": "^26.0.13",
     "@types/node": "^14.10.1",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "husky": "^4.3.5",
-    "jest": "^26.4.2",
+    "jest": "^26.6.3",
+    "microbundle": "^0.13.0",
     "next": "^10.0.0",
     "prettier": "^2.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-test-renderer": "^17.0.1",
-    "shx": "^0.3.3",
-    "tsdx": "^0.14.1",
     "typescript": "^4.0.2"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint"
+      "pre-commit": "npm run type-check"
     }
   },
   "sideEffects": false
