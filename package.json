@@ -1,6 +1,6 @@
 {
   "name": "@rkusa/ui",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -25,7 +25,7 @@
     "fmt": "prettier --write './**/*.{js,ts,tsx,json}'",
     "type-check": "tsc --noEmit",
     "test": "jest",
-    "build": "microbundle --format modern,es,cjs",
+    "build": "microbundle --format modern,es,cjs --jsx React.createElement",
     "prepare": "npm run build"
   },
   "resolutions": {
