@@ -95,7 +95,8 @@ const Button = styled.button`
 
   &,
   &:hover,
-  &:active {
+  &:active,
+  &:focus {
     background: none;
     border: none;
   }

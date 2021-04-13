@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { forwardRef, useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import Spinner from "./Spinner";
 import { useDelayedLoading } from "../hooks/useDelayedLoading";
@@ -25,7 +25,7 @@ export interface ButtonProps {
   onAction?(): Promise<void>;
 }
 
-const Button = React.forwardRef<
+const Button = forwardRef<
   HTMLButtonElement,
   ButtonProps & React.HTMLAttributes<HTMLButtonElement>
 >(function Button(
@@ -86,7 +86,7 @@ export interface ButtonLinkProps
   target?: string;
 }
 
-export const ButtonLink = React.forwardRef<
+export const ButtonLink = forwardRef<
   HTMLAnchorElement,
   ButtonLinkProps & React.HTMLAttributes<HTMLAnchorElement>
 >(function ButtonLink({ isLoading, children, icon, ...props }, ref) {
