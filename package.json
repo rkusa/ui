@@ -1,6 +1,6 @@
 {
   "name": "@rkusa/ui",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -11,7 +11,6 @@
   "author": "Markus Ast <m@rkusa.st>",
   "source": "src/index.ts",
   "main": "dist/ui.js",
-  "exports": "./dist/ui.modern.js",
   "module": "dist/ui.module.js",
   "esmodule": "dist/ui.modern.js",
   "typings": "dist/index.d.ts",
