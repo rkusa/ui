@@ -79,16 +79,26 @@ const Header = styled.header`
   position: relative;
   text-align: center;
   margin-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    margin: 0.5em 0;
+  }
 `;
 
 // TODO: replace with shared button style
 const Button = styled.button`
-  position: absolute;
-  top: 2px;
-  right: -32px;
-  background: none;
-  border: none;
   color: ${(props) => props.theme.palette.gray400};
+  cursor: pointer;
+
+  &,
+  &:hover,
+  &:active {
+    background: none;
+    border: none;
+  }
 
   @media (max-width: 575px) {
     right: -8px;

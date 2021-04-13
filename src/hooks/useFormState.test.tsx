@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { renderHook, act } from "@testing-library/react-hooks";
 import useFormState, { useCheckboxState } from "./useFormState";
 import { render, fireEvent, createEvent } from "@testing-library/react";
@@ -9,16 +9,16 @@ describe("useFormState", () => {
     expect(result.current.value).toBe("");
 
     act(() => {
-      result.current.onChange({ target: { value: "foo" } } as React.ChangeEvent<
-        HTMLInputElement
-      >);
+      result.current.onChange({
+        target: { value: "foo" },
+      } as React.ChangeEvent<HTMLInputElement>);
     });
     expect(result.current.value).toBe("foo");
 
     act(() => {
-      result.current.onChange({ target: { value: "bar" } } as React.ChangeEvent<
-        HTMLInputElement
-      >);
+      result.current.onChange({
+        target: { value: "bar" },
+      } as React.ChangeEvent<HTMLInputElement>);
     });
     expect(result.current.value).toBe("bar");
   });
